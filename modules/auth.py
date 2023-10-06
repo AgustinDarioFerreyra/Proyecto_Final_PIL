@@ -90,7 +90,6 @@ def signup():
 def login_jwt():
     username = request.json.get('username', None)
     password = request.json.get('password', None)
-  
     user = User.query.filter_by(username=username).first()
     if user and user.check_password(password):
         access_token = create_access_token(identity=username)

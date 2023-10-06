@@ -9,6 +9,7 @@ from modules.auth import csrf
 carreras_bp = Blueprint('routes_carreras', __name__)
 
 @carreras_bp.route('/carreras', methods=['GET'])
+@login_required
 def obtener_carreras():
     programa_nombre = request.args.get('programa_nombre')
     facultad_nombre = request.args.get('facultad_nombre')

@@ -4,7 +4,10 @@
 <div class="home">
     <div class="container text-home">
         <h1><b>Bienvenido a EduGestion</b></h1>
-        <a class="btn btn-info" href="{{ url_for('routes_personas.obtener_lista_paginada') }}">Personas</a>
+        <div class="row">
+            <a class="btn btn-info" style="margin: 4px" href="{{ url_for('routes_personas.obtener_lista_paginada') }}">Personas</a>
+            <a class="btn btn-info" style="margin: 4px" href="{{ url_for('routes_carreras.obtener_carreras') }}">Carreras</a>
+        </div>
     </div>
 
 </div>
