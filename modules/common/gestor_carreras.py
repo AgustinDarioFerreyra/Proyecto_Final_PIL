@@ -56,3 +56,20 @@ class gestor_carreras(ResponseMessage):
 		return resultado
 	
 
+
+	def obtener_con_filtro(self, **kwargs):
+		query = Carrera.query.filter(Carrera.activo ==True)
+
+		if "programa" in kwargs:
+			query = query.join(Programa).filter(Programa.nombre.ilike(f"%{kwargs['programa']}%"))
+
+		if 'facultad' in kwargs:
+			query = query.join(Facultad).filter(Facultad.nombre.ilike(f"%{kwargs['facultad']}%"))
+	
+		if 'universidad' in kwargs:
+			query = query.join(Universidad).filter(Universidad.nombre.ilike(f"%{kwargs['universidad']}%"))
+	
+		if 'campus' in kwargs:
+			query = query.join(Campus).filter(Campus.nombre.ilike(f"%{kwargs['campus']}%"))
+
+		return query.all() if any(kwargs.values()) else []

@@ -1,0 +1,35 @@
+ <h1>Lista de Carreras</h1>
+   <form method="GET" action="/carreras">
+        <label for="programa_nombre">Programa:</label>
+        <input type="text" id="programa_nombre" name="programa_nombre">
+        <br>
+        <label for="facultad_nombre">Facultad:</label>
+        <input type="text" id="facultad_nombre" name="facultad_nombre">
+         <label for="universidad_nombre">Universidad:</label>
+        <input type="text" id="universidad_nombre" name="universidad_nombre">
+        <br>
+        <label for="campus_nombre">Campus:</label>
+        <input type="text" id="campus_nombre" name="campus_nombre">
+        <br>
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Programa</th>
+            <th>Facultad</th>
+            <th>Universidad</th>
+            <th>Campus</th>
+        </tr>
+        {% for carrera in carreras %}
+        <tr>
+            <td>{{ carrera.id }}</td>
+            <td>{{ carrera.programa.nombre }}</td>
+            <td>{{ carrera.facultad.nombre }}</td>
+            <td>{{ carrera.universidad.nombre }}</td>
+            <td>{{ carrera.campus.nombre }}</td>
+        </tr>
+        {% endfor %}
+    </table>
