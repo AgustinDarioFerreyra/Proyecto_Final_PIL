@@ -6,13 +6,18 @@ class gestor_carreras(ResponseMessage):
 	def __init__(self):
 		super().__init__()
 
+	def obtener_todo(self):
+		return Carrera.query.filter(Carrera.activo==True).all()
+
+
 	def obtener_universidades(self):
-		return db.session.query(Universidad).distinct().join(Carrera).all()
+		return db.session.query(Universidad).filter(Universidad.activo==True).distinct().join(Carrera).all()
 	
 
 	def obtener_facultades(self, **kwargs):
 		resultado = (
 			db.session.query(Facultad)
+			.filter(Facultad.activo==True)
 			.distinct()
 			.join(Carrera)
 			.join(Universidad)
@@ -24,6 +29,7 @@ class gestor_carreras(ResponseMessage):
 	def obtener_campus(self, **kwargs):
 		resultado = (
 			db.session.query(Campus)
+			.filter(Campus.activo==True)
 			.distinct()
 			.join(Carrera)
 			.join(Universidad)
@@ -37,6 +43,7 @@ class gestor_carreras(ResponseMessage):
 	def obtener_programas(self, **kwargs):
 		resultado = (
 			db.session.query(Programa)
+			.filter(Programa.activo==True)
 			.distinct()
 			.join(Carrera)
 			.join(Universidad)
@@ -55,8 +62,6 @@ class gestor_carreras(ResponseMessage):
 		)
 		return resultado
 	
-	def obtener_todo(self):
-		return Carrera.query.all()
 
 	# def obtener_con_filtro(self, **kwargs):
 	# 	query = Carrera.query.filter(Carrera.activo==True)
