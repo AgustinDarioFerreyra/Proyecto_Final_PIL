@@ -107,11 +107,6 @@ footer {
     font-size:1.2em
 }
 
-
-input{
-    background-color:#ADAFB2 !important
-}
-
 input:focus, select:focus, select, input.form-control:focus {
 
             outline:none !important;

@@ -97,7 +97,7 @@
 
                         // Recorrer la lista de resultados y agregar cada fila a la tabla
                         $.each(data.Resultado, function (index, carrera) {
-                            var botonEliminar = '<button class="btn btn-danger eliminarButton" data-id="' + carrera.id + '"><i class="fa-regular fa-trash-can"></i>Dar de Baja</button>';
+                            var botonEliminar = '<button class="btn btn-danger eliminarButton" data-id="' + carrera.id + '"><i class="far fa-trash-alt"></i></button>';
                             dataTable.row.add([
                                 carrera.universidad,
                                 carrera.facultad,

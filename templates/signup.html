@@ -8,15 +8,15 @@
     <p>Crea una cuenta</p>
     <form method="POST">
         {{ form.hidden_tag() }}
-        <div>
+        <div class="signup">
             {{ form.username.label }}
             {{ form.username(class="form-control") }}
         </div>
-        <div>
+        <div class="signup">
             {{ form.password.label }}
             {{ form.password(class="form-control") }}
         </div>
-        <div>
+        <div class="signup">
             {{ form.confirm_password.label }}
             {{ form.confirm_password(class="form-control") }}
         </div>
