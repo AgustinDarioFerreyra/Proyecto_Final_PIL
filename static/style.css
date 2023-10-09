@@ -10,6 +10,13 @@
     justify-content: center;
 }
 
+.container-chico{
+    background-color:#C7CACC;
+    padding:3%;
+    border-radius: 8px;
+    margin: 40px 0px 40px 0px;
+}
+
 #navbarNav {
     justify-content: right;
 }
@@ -25,20 +32,22 @@
     margin: 0px;
 }
 
-.text-home {
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-top: 4%;
+.fondo{
+    background-color: #ADAFB2
 }
 
+.text-title {
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 6%;
+}
 
 .text {
     align-items: flex-start;
 }
 
 .navbar {
-    background-color: #797C7F;
-
+  background-color: transparent !important;
 }
 
 .foot {
@@ -64,7 +73,7 @@
 
 footer {
     width: 100%;
-    position: absolute;
+    position: absolute !important;
 }
 
 .footer ul {
@@ -73,10 +82,48 @@ footer {
     padding: 3% 0 3% 0;
 }
 
-.login {
-    margin-bottom: 50px
+.signup{
+    margin:5% 0 5% 0;
 }
 
 #myModal {
     top: 5%;
 }
+
+#list{
+    width:100%;
+}
+
+.option{
+    margin-left:50%
+}
+
+.redes:hover{
+    color: black !important
+}
+
+.logo span{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:1.2em
+}
+
+
+input{
+    background-color:#ADAFB2 !important
+}
+
+input:focus, select:focus, select, input.form-control:focus {
+
+            outline:none !important;
+
+            outline-width: 0 !important;
+
+            box-shadow: none;
+
+            -moz-box-shadow: none;
+
+            -webkit-box-shadow: none;
+
+            border-color: black
+
+        }

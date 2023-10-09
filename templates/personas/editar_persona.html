@@ -4,7 +4,9 @@
 {% import 'comun/modal_carreras_personas.html' as agregar_carrera %}
 
 {% block content %}
+<div class="fondo">
 <div class="container p-2">
+    <div class="container-chico" style="margin: 150px 0px 150px 0px;">
     <h2>Editar Persona</h2>
     <form id="editar-persona-form" method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -67,6 +69,8 @@
     </div>
 
     <a class="btn btn-primary" href="{{ url_for('routes_personas.obtener_lista_paginada') }}">Volver a la Lista</a>
+</div>
+</div>
 </div>
 
 			<!-- Modal para agregar carrera -->

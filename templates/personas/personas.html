@@ -2,20 +2,22 @@
 {% import 'comun/modal_eliminar.html' as modal_eliminar %}
 
 {% block content %}
-
-	<div class="container p-2">
-		<h2 class="text-center">Personas</h2>
+<div class="fondo">
+	<div class="container text-title">
+	<div class="container-chico">
+		<h2><b>Personas</b></h2>
 		<div class="row">
 			<div class="mr-2">
-				<a class="btn btn-success mb-3" href="{{ url_for('routes_personas.crear_persona') }}">Agregar persona</a>
+				<a class="btn btn-success mb-3 option" href="{{ url_for('routes_personas.crear_persona') }}"><i class="fa fa-plus"></i>
+</a>
 			</div>
 			<div>
-				<form method="GET" action="{{ url_for('routes_personas.generar_excel') }}" class="mb-3">
+				<form method="GET" action="{{ url_for('routes_personas.generar_excel') }}" class="mb-3 option">
 					<input type="hidden" name="nombre" value="{{ filtros.get('nombre', '') }}">
 					<input type="hidden" name="apellido" value="{{ filtros.get('apellido', '') }}">
 					<input type="hidden" name="email" value="{{ filtros.get('email', '') }}">
 					<input type="hidden" name="personal_id" value="{{ filtros.get('personal_id', '') }}">
-					<button class="btn btn-info mb-3" type="submit"><i class="fa-regular fa-file-excel">Exportar</i></button>
+					<button class="btn btn-info mb-3" type="submit"><i class="far fa-file-excel"></i></button>
 				</form>
 			</div>
 		</div>
@@ -49,7 +51,7 @@
 			</div>
 		</form>
 	
-		<div id="personas-list"></div>
+		<div id="list">
 		<table id="personas" class="display" style="width:100%;">
 			<thead>
 				<tr>
@@ -75,9 +77,10 @@
 					<!-- ... (otros campos) ... -->
 					<td>
 						<a href="{{ url_for('routes_personas.editar_persona', persona_id=persona.id) }}"
-							class="btn btn-success"><i class="fa-regular fa-pen-to-square"></i>Editar</a>
-						<button class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal{{ persona.id }}"><i
-								class="fa-regular fa-trash-can"></i>Dar de Baja</button>
+							class="btn btn-success"><i class="far fa-edit"></i>
+</a>
+						<button class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal{{ persona.id }}"><i class="far fa-trash-alt"></i>
+</button>
 					</td>
 				</tr>
 				<!-- Modal para confirmar la eliminación -->
@@ -91,8 +94,11 @@
 			</tbody>
 		</table>
 		
-		<a class="btn btn-primary" href="{{ url_for('routes.index') }}">Volver a Inicio</a>
+		<a class="btn btn-primary" style="background-color: #ADAFB2; border: none;" href="{{ url_for('routes.index') }}"><i class="fas fa-home"></i></a>
 	</div>
+	</div>
+	</div>
+</div>
 
 <script>
 	$(document).ready(function () {

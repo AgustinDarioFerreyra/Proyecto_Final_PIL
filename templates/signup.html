@@ -1,8 +1,11 @@
 {% extends 'comun/base.html' %}
 
 {% block content %}
+<div class="fondo">
 	<div class="container">
-    <h1>Registro</h1>
+    <div class="container-chico">
+    <h1><b>Sign Up</b></h1>
+    <p>Crea una cuenta</p>
     <form method="POST">
         {{ form.hidden_tag() }}
         <div>
@@ -17,10 +20,12 @@
             {{ form.confirm_password.label }}
             {{ form.confirm_password(class="form-control") }}
         </div>
-        <div>
-            {{ form.submit(class="btn btn-primary") }}
+        <div class="signup">
+            <button class="btn btn-primary" type="submit" >Sign Up</button>
         </div>
     </form>
     <p>¿Ya tienes una cuenta? <a href="{{ url_for('auth.login') }}">Inicia sesión</a></p>
 	</div>
+    </div>
+</div>
 {% endblock %}

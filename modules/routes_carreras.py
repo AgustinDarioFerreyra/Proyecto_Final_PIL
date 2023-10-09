@@ -32,4 +32,5 @@ def eliminar_carrera(carrera_id):
         flash('Carrera eliminada correctamente', 'success')
     else:
         flash('Error al eliminar carrera', 'success')
-    return redirect(url_for('routes_carreras.obtener_carreras'))
+    return redirect(url_for('routes_carreras.obtener_carreras')) 
+

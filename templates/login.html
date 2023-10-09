@@ -1,8 +1,13 @@
 {% extends 'comun/base.html' %}
 
 {% block content %}
-	<div class="container">
-		<h1>Login</h1>
+
+<div class="fondo">
+	<div class="container d-flex flex-row">
+		<div class="col-6 logo d-flex" style="font-size: 4em; align-items: center;"> <img src="../static/img/libro.svg" alt="logo" style="width: 100px;"><span>EduGestión</span></a></div>
+	
+	<div class="container-chico">
+		<h1><b>Login</b></h1>
         <p>Accede a tu cuenta</p>
         <div class="login">
 		<form method="post" action="{{ url_for('auth.login') }}">
@@ -12,11 +17,12 @@
 			<input class="form-control" type="text" name="username" required><br>
 			<label class="form-label" for="password">Password:</label>
 			<input class="form-control" type="password" name="password" required><br>
-            <input class="btn btn-primary" type="submit" value="Login">
+            <button class="btn btn-primary" type="submit" value="Login">Login</button>
             </div>
 		</form>
 		<p>¿No tienes una cuenta? <a href="/signup">Registrate</a></p>
-        </div>
-
+    </div>
 	</div>
+    </div>
+</div>
 {% endblock %}

@@ -264,9 +264,8 @@
 			const selectedcampus = campusSelect.value;
 			const selectedprograma = programaSelect.value;
 			const selectedrol = rolSelect.value;
-			// Comprobar si todas las constantes tienen datos
-			if (selecteduniversidad && selectedfacultad && selectedcampus && selectedprograma && selectedrol) {
 
+			if (selecteduniversidad && selectedfacultad && selectedcampus && selectedprograma && selectedrol) {
 				fetch('/api/carreras/asignar_carrera', {
 					method: 'POST',
 					headers: {
@@ -279,13 +278,14 @@
 						if (data.Exito) {
 							alert('Carrera asignada con éxito');
 							$('#agregarModal{{ id_persona }}').modal('hide');
-							cargarDatos(id_persona);
+                           setTimeout(function() {
+                               location.reload();
+                           }, 500);
 						}
 					})
 					.catch(error => console.error("Error al cargar Programas:", error));
 
 			} else {
-				// Al menos una constante no tiene datos
 				alert('Por favor, complete todos los campos antes de continuar.');
 			}
 		});
