@@ -89,9 +89,7 @@ class gestor_carreras(ResponseMessage):
 	# 	return query.all() if any(kwargs.values()) else []
 
 	def obtener_con_filtro(self, **kwargs):
-		# query = db.session.query(Carrera).filter(Carrera.activo==True)
-		# query = Carrera.query.filter(Carrera.activo==True)
-		query = db.session.query(Carrera)
+		query = Carrera.query.filter(Carrera.activo==True)
 		if 'universidad' in kwargs:
 			query = query.join(Universidad).filter(Universidad.nombre.ilike(f"%{kwargs['universidad']}%"))
 		if 'facultad' in kwargs:
