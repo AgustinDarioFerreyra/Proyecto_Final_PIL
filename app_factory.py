@@ -38,7 +38,7 @@ def create_app():
 	app.register_error_handler(404, page_not_found)
 	api.add_resource(PersonasResource, '/api/personas', '/api/personas/<int:persona_id>')
 	api.add_resource(LugaresResource, '/api/lugares', '/api/lugares/<string:lugar_type>')
-	api.add_resource(CarrerasResource, '/api/carreras', '/api/carreras/<string:recurso>')
+	api.add_resource(CarrerasResource, '/api/carreras', '/api/carreras/<string:recurso>', '/api/carreras/<int:carrera_id>')
 	api.add_resource(GenerosResource, '/api/generos')
 
 	return app

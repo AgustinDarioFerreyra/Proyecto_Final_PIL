@@ -36,6 +36,7 @@
                 <th>Facultad</th>
                 <th>Campus</th>
                 <th>Programa</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -46,7 +47,16 @@
                 <td>{{ carrera.facultad.nombre }}</td>
                 <td>{{ carrera.campus.nombre }}</td>
                 <td>{{ carrera.programa.nombre }}</td>
+                <td>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal{{ carrera.id }}"><i class="fa-regular fa-trash-can"></i>Dar de Baja</button>
+				</td>
             </tr>
+            <!-- Modal para confirmar la eliminación -->
+				{{ modal_eliminar.confirmar_eliminar(
+				carrera.id,
+				url_for('routes_carreras.eliminar_carrera', carrera_id=carrera.id),
+				'¿Estás seguro de que deseas eliminar a ' ~ carrera.universidad.nombre ~ '?'
+				) }}
             {% endfor %}
         </tbody>
     </table>

@@ -101,3 +101,14 @@ class gestor_carreras(ResponseMessage):
 		if 'programa' in kwargs:
 			query = query.join(Programa).filter(Programa.nombre.ilike(f"%{kwargs['programa']}%"))
 		return query.all() if any(kwargs.values()) else []
+	
+	def eliminar(self, id):
+		carrera = Carrera.query.get(id)
+		if carrera==None:
+			self.Exito = False
+			self.MensajePorFallo = "La carrera no existe"
+			return self.obtenerResultado()
+		resultado_borrar=carrera.activar(False)
+		self.Exito=resultado_borrar["Exito"]
+		self.MensajePorFallo=resultado_borrar["MensajePorFallo"]
+		return self.obtenerResultado()

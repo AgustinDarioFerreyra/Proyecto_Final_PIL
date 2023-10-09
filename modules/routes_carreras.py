@@ -23,3 +23,13 @@ def obtener_carreras():
     }
     carreras = gestor_carreras().obtener_con_filtro(**filtros)
     return render_template('carreras/carreras.html', carreras = carreras, csrf=csrf, filtros=filtros)
+
+@carreras_bp.route('/carreras/<int:carrera_id>', methods=['POST'])
+@login_required
+def eliminar_carrera(carrera_id):
+    resultado=gestor_carreras().eliminar(carrera_id)
+    if resultado["Exito"]:
+        flash('Carrera eliminada correctamente', 'success')
+    else:
+        flash('Error al eliminar carrera', 'success')
+    return redirect(url_for('routes_carreras.obtener_carreras'))
