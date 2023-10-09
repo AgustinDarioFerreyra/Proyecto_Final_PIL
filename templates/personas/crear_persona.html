@@ -26,9 +26,9 @@
         </div>
         <div class="row">
             <div class="col mb-3">
-                <label for="birthdate" class="form-label">Fecha de Nacimiento (d-m-año)</label>
-                <input type="text" class="form-control" id="birthdate" name="birthdate"
-                    value="{{ formulario_data.get('birthdate', '') }}">
+            <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
+            <input type="text" class="form-control" id="birthdatePicker" name="birthdate"
+            value="{{ formulario_data.get('birthdate', '') }}">
             </div>
             <div class="col mb-3">
                 <label for="personal_id" class="form-label">DNI / Cedula</label>
@@ -48,4 +48,14 @@
     </form>
     <a class="btn btn-primary" href="{{ url_for('routes_personas.obtener_lista_paginada') }}">Volver a la Lista</a>
 </div>
+<script>
+    $(function() {
+        $("#birthdatePicker").datepicker({
+            dateFormat: "dd-mm-yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1900:2023"
+        });
+    });
+</script>
 {% endblock %}

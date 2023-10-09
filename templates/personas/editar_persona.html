@@ -25,8 +25,7 @@
         <div class="row">
             <div class="col mb-3">
                 <label for="birthdate" class="form-label">Fecha de Nacimiento (d-m-año)</label>
-                <input type="text" class="form-control" id="birthdate" name="birthdate"
-                    value="{{ persona.birthdate.strftime('%d-%m-%Y') }}">
+                <input type="text" class="form-control" id="birthdate" name="birthdate" value="{{ persona.birthdate.strftime('%d-%m-%Y') }}">
             </div>
             <div class="col mb-3">
                 <label for="personal_id" class="form-label">DNI / Cedula</label>
@@ -155,6 +154,15 @@
         // Cargar los datos inicialmente
         cargarDatos(id_persona);
 
+    });
+
+    $(function() {
+        $("#birthdate").datepicker({
+            dateFormat: "dd-mm-yy", 
+            changeMonth: true, 
+            changeYear: true, 
+            yearRange: "1900:2023" 
+        });
     });
 </script>
 {% endblock %}
