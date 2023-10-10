@@ -3,9 +3,11 @@
 {% block content %}
 
 <div class="fondo">
-	<div class="container d-flex flex-row">
-		<div class="col-6 logo d-flex" style="font-size: 4em; align-items: center;"> <img src="../static/img/libro.svg" alt="logo" style="width: 100px;"><span>EduGestión</span></a></div>
-	
+	<div class="container" >
+	<div class="row d-flex loginn">
+		<div class="logoo d-flex flex-row">
+			<img src="../static/img/libro.svg" alt="logo"><span>EduGestión</span>
+		</div>
 	<div class="container-chico">
 		<h1><b>Login</b></h1>
         <p>Accede a tu cuenta</p>
@@ -17,10 +19,11 @@
 			<input class="form-control" type="text" name="username" required><br>
 			<label class="form-label" for="password">Password:</label>
 			<input class="form-control" type="password" name="password" required><br>
-            <button class="btn btn-primary" type="submit" value="Login">Login</button>
+            <button class="btn btn-primary d-flex" type="submit" value="Login">Login</button>
             </div>
 		</form>
 		<p>¿No tienes una cuenta? <a href="/signup">Registrate</a></p>
+	</div>
     </div>
 	</div>
     </div>
