@@ -31,7 +31,10 @@ class exportar:
         ws = wb.active
 
         # Agregar encabezados de columnas (suponemos que todos los diccionarios tienen las mismas claves)
-        headers = list(datos[0].keys())
+        if datos:
+            headers = list(datos[0].keys())
+        else:
+            headers = []
         ws.append(headers)
 
         

@@ -1,0 +1,40 @@
+{% extends 'comun/base.html' %}
+
+{% block content %}
+<div class="fondo">
+    <div class="container p-2">    
+        <div class="container-chico">
+            <h2>Crear Nueva Carrera</h2>
+            <form id="crear-carrera-form" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="universidad" class="form-label">Universidad</label>
+                        <input type="text" class="form-control" id="universidad" name="universidad"
+                            value="{{ formulario_data.get('universidad', '') }}">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="facultad" class="form-label">Facultad</label>
+                        <input type="text" class="form-control" id="facultad" name="facultad"
+                            value="{{ formulario_data.get('facultad', '') }}">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="campus" class="form-label">Campus</label>
+                        <input type="text" class="form-control" id="campus" name="campus"
+                            value="{{ formulario_data.get('campus', '') }}">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="programa" class="form-label">Programa</label>
+                        <input type="text" class="form-control" id="programa" name="programa"
+                            value="{{ formulario_data.get('programa', '') }}">
+                    </div>
+                </div>
+                <div class="col mb-3 text-center">
+                    <button class="btn btn-success btn-sm" type="submit" id="crear-carrera">Crear Carrera</button>
+                </div>
+            </form>
+            <a class="btn btn-primary" href="{{ url_for('routes_carreras.obtener_carreras') }}">Volver a la Lista</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

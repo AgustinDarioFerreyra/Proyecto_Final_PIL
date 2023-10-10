@@ -1,10 +1,38 @@
 from modules.common.gestor_comun import ResponseMessage, validaciones
 from modules.models.entities import Universidad, Facultad, Campus, Programa, Carrera, TipoPersona, db
-
+from config import registros_por_pagina
 
 class gestor_carreras(ResponseMessage):
 	def __init__(self):
 		super().__init__()
+
+	campos_obligatorios = {
+		'universidad': 'El nombre de la Universidad es obligatorio',
+		'facultad': 'El nombre de la Facultad es obligatorio',
+		'campus': 'El nombre del Campus es obligatorio',
+		'programa': 'El nombre del Programa es obligatorio',
+	}
+
+	def _validar_campos_obligatorios(self, kwargs):
+		for campo, mensaje in self.campos_obligatorios.items():
+			if campo not in kwargs or kwargs[campo]=='':
+				self.Exito = False
+				self.MensajePorFallo = mensaje
+				return False
+		return True
+
+	def obtener_pagina(self, pagina, **kwargs):
+		query = Carrera.query
+		if 'universidad' in kwargs:
+			query = query.join(Universidad).filter(Universidad.nombre == kwargs['universidad'])
+		if 'facultad' in kwargs:
+			query = query.join(Facultad).filter(Facultad.nombre == kwargs['facultad'])
+		if 'campus' in kwargs:
+			query = query.join(Campus).filter(Campus.nombre == kwargs['campus'])
+		if 'programa' in kwargs:
+			query = query.join(Programa).filter(Programa.nombre == kwargs['programa'])
+		carreras, total_paginas = Carrera.obtener_paginado(query, pagina, registros_por_pagina)
+		return carreras, total_paginas
 
 	def obtener_todo(self):
 		return Carrera.query.filter(Carrera.activo==True).all()
@@ -109,4 +137,23 @@ class gestor_carreras(ResponseMessage):
 		resultado_borrar=carrera.activar(False)
 		self.Exito=resultado_borrar["Exito"]
 		self.MensajePorFallo=resultado_borrar["MensajePorFallo"]
+		return self.obtenerResultado()
+
+
+	def crear(self, **kwargs):
+		if not self._validar_campos_obligatorios(kwargs):
+			return self.obtenerResultado()
+
+		universidad=Universidad.crear_y_obtener(nombre=kwargs['universidad'])
+		facultad=Facultad.crear_y_obtener(nombre=kwargs['facultad'])
+		campus=Campus.crear_y_obtener(nombre=kwargs['campus'])
+		programa=Programa.crear_y_obtener(nombre=kwargs['programa'])
+
+		nueva_carrera=Carrera(universidad=universidad, facultad=facultad, campus=campus, programa=programa)
+
+		resultado_crear=nueva_carrera.guardar()
+		self.Resultado=resultado_crear["Resultado"]
+		self.Exito=resultado_crear["Exito"]
+		self.MensajePorFallo=resultado_crear["MensajePorFallo"]
+
 		return self.obtenerResultado()
