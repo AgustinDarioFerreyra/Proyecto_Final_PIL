@@ -13,7 +13,7 @@
         </div>
         <div>
             <form method="GET" action="{{ url_for('routes_carreras.generar_excel') }}" class="mb-3 option">
-                <input type="hidden" name="univeridad" value="{{ filtros.get('univeridad', '') }}">
+                <input type="hidden" name="univeridad" value="{{ filtros.get('universidad', '') }}">
                 <input type="hidden" name="facultad" value="{{ filtros.get('facultad', '') }}">
                 <input type="hidden" name="campus" value="{{ filtros.get('campus', '') }}">
                 <input type="hidden" name="programa" value="{{ filtros.get('programa', '') }}">
