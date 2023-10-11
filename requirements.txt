@@ -10,5 +10,4 @@ WTForms
 Gunicorn
 psycopg2
 python-dotenv
-mysql-connector-python
 openpyxl
