@@ -10,7 +10,7 @@ from flask_jwt_extended import create_access_token, jwt_required
 from flask_wtf.csrf import CSRFProtect
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-from modules.models.base import db
+
 
 auth_bp = Blueprint('auth', __name__)
 
