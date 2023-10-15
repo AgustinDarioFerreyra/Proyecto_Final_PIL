@@ -91,31 +91,6 @@ class gestor_carreras(ResponseMessage):
 		return resultado
 	
 
-	# def obtener_con_filtro(self, **kwargs):
-	# 	query = Carrera.query.filter(Carrera.activo==True)
-	# 	if 'universidad' in kwargs:
-	# 		query = query.filter(Universidad.nombre.ilike(f"%{kwargs['universidad']}%"))
-	# 	if 'facultad' in kwargs:
-	# 		query = query.filter(Facultad.nombre.ilike(f"%{kwargs['facultad']}%"))
-	# 	if 'campus' in kwargs:
-	# 		query = query.filter(Campus.nombre.ilike(f"%{kwargs['campus']}%"))
-	# 	if 'programa' in kwargs:
-	# 		query = query.filter(Programa.nombre.ilike(f"%{kwargs['programa']}%"))
-	# 	return query.all() if any(kwargs.values()) else []
-
-
-	# def obtener_con_filtro(self, **kwargs):
-	# 	query = Carrera.query.filter(Carrera.activo==True)
-	# 	if 'universidad' in kwargs:
-	# 		query = query.join(Universidad).filter(Universidad.nombre.ilike(f"%{kwargs['universidad']}%"))
-	# 	if 'facultad' in kwargs:
-	# 		query = query.join(Facultad).filter(Facultad.nombre.ilike(f"%{kwargs['facultad']}%"))
-	# 	if 'campus' in kwargs:
-	# 		query = query.join(Campus).filter(Campus.nombre.ilike(f"%{kwargs['campus']}%"))
-	# 	if 'programa' in kwargs:
-	# 		query = query.join(Programa).filter(Programa.nombre.ilike(f"%{kwargs['programa']}%"))
-	# 	return query.all() if any(kwargs.values()) else []
-
 	def obtener_con_filtro(self, **kwargs):
 		query = Carrera.query.filter(Carrera.activo==True)
 		if 'universidad' in kwargs:
@@ -155,5 +130,51 @@ class gestor_carreras(ResponseMessage):
 		self.Resultado=resultado_crear["Resultado"]
 		self.Exito=resultado_crear["Exito"]
 		self.MensajePorFallo=resultado_crear["MensajePorFallo"]
+
+		return self.obtenerResultado()
+	
+		def editar(self, id, **kwargs):
+			carrera = Carrera.query.get(id)
+			if carrera==None:
+				self.Exito = False
+				self.MensajePorFallo = "La carrera no existe"
+				return self.obtenerResultado()
+			
+			#Validaciones
+			for campo, mensaje in self.campos_obligatorios.items():
+				if campo in kwargs and kwargs[campo]=='':
+					self.Exito = False
+					self.MensajePorFallo = mensaje
+					return self.obtenerResultado()
+				
+			if 'universidad' in kwargs:
+				new_universidad = kwargs['universidad']
+				if new_universidad != carrera.universidad.nombre:
+					if not self._validar_universidad(new_universidad):
+						return self.obtenerResultado()
+					carrera.universidad.nombre = new_universidad
+
+			if 'facultad' in kwargs:
+				new_facultad = kwargs['facultad']
+				if not self._validar_facultad(new_facultad):
+					return self.obtenerResultado()
+				carrera.facultad.nombre = new_facultad
+			
+			if 'campus' in kwargs:
+				new_campus = kwargs['campus']
+				if not self._validar_campus(new_campus):
+					return self.obtenerResultado()
+				carrera.campus.nombre = new_campus
+
+			if 'programa' in kwargs:
+				new_facultad = kwargs['programa']
+				if not self._validar_programa(new_programa):
+					return self.obtenerResultado()
+				carrera.programa.nombre = new_programa
+
+			
+			resultado_guardar=carrera.guardar()
+			self.Exito=resultado_guardar["Exito"]
+			self.MensajePorFallo=resultado_guardar["MensajePorFallo"]
 
 		return self.obtenerResultado()
