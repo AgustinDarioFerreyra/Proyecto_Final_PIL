@@ -2,12 +2,14 @@
 
 {% block content %}
 <div class="home">
-    <div class="container text-title">
+    <div class="container">
+        <div class="fondo-home d-flex flex-column">    
         <h1><b>Bienvenido a EduGestión</b></h1>
-        <p>Consultá y administrá datos</p>
+        <p><b>Consultá y administrá datos.</b></p>
         <div class="row">
             <a class="btn btn-info" style="margin: 4px" href="{{ url_for('routes_personas.obtener_lista_paginada') }}">Personas</a>
             <a class="btn btn-info" style="margin: 4px" href="{{ url_for('routes_carreras.obtener_carreras') }}">Carreras</a>
+        </div>
         </div>
     </div>
 

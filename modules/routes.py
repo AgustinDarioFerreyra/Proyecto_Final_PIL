@@ -42,7 +42,7 @@ def contact():
         nombre = form.name.data
         mensaje_enviado = form.message.data
 
-        mensaje_respuesta= f'Hola {nombre}\nGracias por contactarnos.\n\nSu mensaje:\n{mensaje_enviado}'
+        mensaje_respuesta= f'Hola {nombre}\n Recibimos tu mensaje por medio de la web de EduGestión. Gracias por contactarnos.\n\nSu mensaje:\n{mensaje_enviado}'
         resultado=gestor_email().enviar_email(email,"Formulario de contacto",mensaje_respuesta)
         if resultado["Exito"]:
             flash('Formulario enviado con éxito', 'success')

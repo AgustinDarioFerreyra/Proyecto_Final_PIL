@@ -21,8 +21,13 @@
     justify-content: right;
 }
 
-.btn-collap {
-    border: 3px solid white !important
+.navbar-toggler {
+    border: 3px solid black !important
+}
+
+.navbar-toggler-icon{
+    align-items:center;
+    justify-content: center
 }
 
 .home {
@@ -34,6 +39,14 @@
 
 .fondo{
     background-color: #ADAFB2
+}
+
+.fondo-home{
+ background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5));
+    align-items:center;
+    text-align:center;
+    border-radius: 8px;
+    padding:3%
 }
 
 .text-title {
@@ -104,21 +117,60 @@ footer {
 
 .logo span{
     font-family: 'Bebas Neue', sans-serif;
-    font-size:1.2em
+    font-size:1.2em;
+}
+
+.logoo{
+    justify-content:center
+}
+
+.logoo img{
+    width:100px;
+}
+
+.logoo span{
+    justify-content:center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:4em;
+}
+
+.loginn{
+    width:100%;
+    justify-content: space-around;
+    align-items:center
 }
 
 input:focus, select:focus, select, input.form-control:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: black
+}
 
-            outline:none !important;
+@media (max-width: 768px) {
+    .loginn{
+       justify-content:center;
+    }
 
-            outline-width: 0 !important;
+    .logoo img{
+        width:60px;
+    }
 
-            box-shadow: none;
+    .logoo{
+        align-items:center;
+        width:100%
+    }
 
-            -moz-box-shadow: none;
+    .logoo span{
+        font-size: 3em;
+    }
+}
 
-            -webkit-box-shadow: none;
-
-            border-color: black
-
-        }
+@media (max-width: 1024px) {
+    .home{
+        align-items:center;
+        justify-content:center
+    }
+}
