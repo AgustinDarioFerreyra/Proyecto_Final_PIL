@@ -11,7 +11,6 @@ from flask_wtf.csrf import CSRFProtect
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 auth_bp = Blueprint('auth', __name__)
 
 login_manager = LoginManager()
@@ -68,15 +67,14 @@ def signup():
         username = form.username.data
         password = form.password.data
 
-        # Verificar si el usuario ya existe en la base de datos
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash("El nombre de usuario ya existe. Por favor, elige otro.", 'danger')
         else:
-            # Crear un nuevo usuario y guardarlo en la base de datos
             new_user = User(username=username, password=password)
-            new_user.set_password(password)  # Configura la contraseña de forma segura
+            new_user.set_password(password) 
             new_user.guardar()
+
             flash("Registro exitoso. Inicia sesión con tu nueva cuenta.", 'success')
             return redirect(url_for('auth.login'))
     
