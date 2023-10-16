@@ -34,6 +34,15 @@ class gestor_carreras(ResponseMessage):
 		carreras, total_paginas = Carrera.obtener_paginado(query, pagina, registros_por_pagina)
 		return carreras, total_paginas
 
+	def obtener(self, id):
+		carrera = Carrera.query.get(id)
+		if carrera==None:
+			self.Exito = False
+			self.MensajePorFallo = "La carrera no existe"
+			return self.obtenerResultado()
+		self.Resultado = carrera
+		return self.obtenerResultado()
+
 	def obtener_todo(self):
 		return Carrera.query.filter(Carrera.activo==True).all()
 
@@ -91,31 +100,6 @@ class gestor_carreras(ResponseMessage):
 		return resultado
 	
 
-	# def obtener_con_filtro(self, **kwargs):
-	# 	query = Carrera.query.filter(Carrera.activo==True)
-	# 	if 'universidad' in kwargs:
-	# 		query = query.filter(Universidad.nombre.ilike(f"%{kwargs['universidad']}%"))
-	# 	if 'facultad' in kwargs:
-	# 		query = query.filter(Facultad.nombre.ilike(f"%{kwargs['facultad']}%"))
-	# 	if 'campus' in kwargs:
-	# 		query = query.filter(Campus.nombre.ilike(f"%{kwargs['campus']}%"))
-	# 	if 'programa' in kwargs:
-	# 		query = query.filter(Programa.nombre.ilike(f"%{kwargs['programa']}%"))
-	# 	return query.all() if any(kwargs.values()) else []
-
-
-	# def obtener_con_filtro(self, **kwargs):
-	# 	query = Carrera.query.filter(Carrera.activo==True)
-	# 	if 'universidad' in kwargs:
-	# 		query = query.join(Universidad).filter(Universidad.nombre.ilike(f"%{kwargs['universidad']}%"))
-	# 	if 'facultad' in kwargs:
-	# 		query = query.join(Facultad).filter(Facultad.nombre.ilike(f"%{kwargs['facultad']}%"))
-	# 	if 'campus' in kwargs:
-	# 		query = query.join(Campus).filter(Campus.nombre.ilike(f"%{kwargs['campus']}%"))
-	# 	if 'programa' in kwargs:
-	# 		query = query.join(Programa).filter(Programa.nombre.ilike(f"%{kwargs['programa']}%"))
-	# 	return query.all() if any(kwargs.values()) else []
-
 	def obtener_con_filtro(self, **kwargs):
 		query = Carrera.query.filter(Carrera.activo==True)
 		if 'universidad' in kwargs:
@@ -156,4 +140,34 @@ class gestor_carreras(ResponseMessage):
 		self.Exito=resultado_crear["Exito"]
 		self.MensajePorFallo=resultado_crear["MensajePorFallo"]
 
+		return self.obtenerResultado()
+
+
+	def editar(self, id, **kwargs):
+		carrera = Carrera.query.get(id)
+		if carrera==None:
+			self.Exito = False
+			self.MensajePorFallo = "La carrera no existe"
+			return self.obtenerResultado()
+
+		#Validaciones
+		for campo, mensaje in self.campos_obligatorios.items():
+			if campo in kwargs and kwargs[campo]=='':
+				self.Exito = False
+				self.MensajePorFallo = mensaje
+				return self.obtenerResultado()
+
+		universidad=Universidad.crear_y_obtener(nombre=kwargs['universidad'])
+		facultad=Facultad.crear_y_obtener(nombre=kwargs['facultad'])
+		campus=Campus.crear_y_obtener(nombre=kwargs['campus'])
+		programa=Programa.crear_y_obtener(nombre=kwargs['programa'])
+
+		carrera.universidad=universidad
+		carrera.facultad=facultad
+		carrera.campus=campus
+		carrera.programa=programa
+
+		resultado_editar=carrera.guardar()
+		self.Exito=resultado_editar["Exito"]
+		self.MensajePorFallo=resultado_editar["MensajePorFallo"]
 		return self.obtenerResultado()

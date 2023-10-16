@@ -39,8 +39,6 @@
 					<label for="rol" class="form-label">Rol</label>
 					<select class="form-control" id="rol" name="rol">
 						<option value="" disabled selected>Seleccionar Rol</option>
-						<option value="alumno">Alumno</option>
-    					<option value="profesor">Profesor</option>
 					</select>
 				</div>
 
@@ -280,9 +278,9 @@
 						if (data.Exito) {
 							alert('Carrera asignada con éxito');
 							$('#agregarModal{{ id_persona }}').modal('hide');
-                           setTimeout(function() {
-                               location.reload();
-                           }, 500);
+                            setTimeout(function() {
+                                location.reload();
+                            }, 500);
 						}
 					})
 					.catch(error => console.error("Error al cargar Programas:", error));

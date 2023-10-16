@@ -5,7 +5,7 @@
 
 <div class="fondo">
 <div class="container text-title" style="width: 100%;padding-bottom: 100px;">
-    <div class="container-chico" >
+    <div class="container-chico"style="width: 100%;" >
     <h2><b>Lista de Carreras</b></h2>
     <div class="row">
         <div class="mr-2">
@@ -16,7 +16,7 @@
                 <input type="hidden" name="universidad" value="{{ filtros.get('universidad', '') }}">
                 <input type="hidden" name="facultad" value="{{ filtros.get('facultad', '') }}">
                 <input type="hidden" name="campus" value="{{ filtros.get('campus', '') }}">
-                <input type="hidden" name="programa" value="{{ filtros.get('universidad', '') }}">
+                <input type="hidden" name="programa" value="{{ filtros.get('programa', '') }}">
                 <button class="btn btn-info mb-3" type="submit"><i class="far fa-file-excel"></i></button>
             </form>
         </div>
@@ -67,9 +67,10 @@
                 <td>{{ carrera.campus.nombre }}</td>
                 <td>{{ carrera.programa.nombre }}</td>
                 <td>
-				<button class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal{{ carrera.id }}"><i class="far fa-trash-alt"></i>
-</i>
-</button>
+                    <a href="{{ url_for('routes_carreras.editar_carrera', carrera_id=carrera.id) }}"
+						class="btn btn-success"><i class="far fa-edit"></i>
+                    </a>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal{{ carrera.id }}"><i class="far fa-trash-alt"></i></button>
 				</td>
             </tr>
             <!-- Modal para confirmar la eliminación -->
@@ -81,8 +82,8 @@
             {% endfor %}
         </tbody>
     </table>
-</div>
-<a class="btn btn-primary" style="background-color: #ADAFB2; border: none;" href="{{ url_for('routes.index') }}"><i class="fas fa-home"></i></a>
+    </div>
+    <a class="btn btn-primary" style="background-color: #ADAFB2; border: none;" href="{{ url_for('routes.index') }}"><i class="fas fa-home"></i></a>
 </div>
 </div>
 </div>
