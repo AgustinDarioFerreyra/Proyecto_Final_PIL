@@ -1,5 +1,4 @@
 from flask_sqlalchemy import SQLAlchemy
-import flask_sqlalchemy
 from sqlalchemy import and_
 from sqlalchemy.inspection import inspect
 from math import ceil
