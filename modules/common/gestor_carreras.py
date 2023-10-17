@@ -34,6 +34,15 @@ class gestor_carreras(ResponseMessage):
 		carreras, total_paginas = Carrera.obtener_paginado(query, pagina, registros_por_pagina)
 		return carreras, total_paginas
 
+	def obtener(self, id):
+		carrera = Carrera.query.get(id)
+		if carrera==None:
+			self.Exito = False
+			self.MensajePorFallo = "La carrera no existe"
+			return self.obtenerResultado()
+		self.Resultado = carrera
+		return self.obtenerResultado()
+
 	def obtener_todo(self):
 		return Carrera.query.filter(Carrera.activo==True).all()
 
@@ -132,49 +141,33 @@ class gestor_carreras(ResponseMessage):
 		self.MensajePorFallo=resultado_crear["MensajePorFallo"]
 
 		return self.obtenerResultado()
-	
-		def editar(self, id, **kwargs):
-			carrera = Carrera.query.get(id)
-			if carrera==None:
+
+
+	def editar(self, id, **kwargs):
+		carrera = Carrera.query.get(id)
+		if carrera==None:
+			self.Exito = False
+			self.MensajePorFallo = "La carrera no existe"
+			return self.obtenerResultado()
+
+		#Validaciones
+		for campo, mensaje in self.campos_obligatorios.items():
+			if campo in kwargs and kwargs[campo]=='':
 				self.Exito = False
-				self.MensajePorFallo = "La carrera no existe"
+				self.MensajePorFallo = mensaje
 				return self.obtenerResultado()
-			
-			#Validaciones
-			for campo, mensaje in self.campos_obligatorios.items():
-				if campo in kwargs and kwargs[campo]=='':
-					self.Exito = False
-					self.MensajePorFallo = mensaje
-					return self.obtenerResultado()
-				
-			if 'universidad' in kwargs:
-				new_universidad = kwargs['universidad']
-				if new_universidad != carrera.universidad.nombre:
-					if not self._validar_universidad(new_universidad):
-						return self.obtenerResultado()
-					carrera.universidad.nombre = new_universidad
 
-			if 'facultad' in kwargs:
-				new_facultad = kwargs['facultad']
-				if not self._validar_facultad(new_facultad):
-					return self.obtenerResultado()
-				carrera.facultad.nombre = new_facultad
-			
-			if 'campus' in kwargs:
-				new_campus = kwargs['campus']
-				if not self._validar_campus(new_campus):
-					return self.obtenerResultado()
-				carrera.campus.nombre = new_campus
+		universidad=Universidad.crear_y_obtener(nombre=kwargs['universidad'])
+		facultad=Facultad.crear_y_obtener(nombre=kwargs['facultad'])
+		campus=Campus.crear_y_obtener(nombre=kwargs['campus'])
+		programa=Programa.crear_y_obtener(nombre=kwargs['programa'])
 
-			if 'programa' in kwargs:
-				new_facultad = kwargs['programa']
-				if not self._validar_programa(new_programa):
-					return self.obtenerResultado()
-				carrera.programa.nombre = new_programa
+		carrera.universidad=universidad
+		carrera.facultad=facultad
+		carrera.campus=campus
+		carrera.programa=programa
 
-			
-			resultado_guardar=carrera.guardar()
-			self.Exito=resultado_guardar["Exito"]
-			self.MensajePorFallo=resultado_guardar["MensajePorFallo"]
-
+		resultado_editar=carrera.guardar()
+		self.Exito=resultado_editar["Exito"]
+		self.MensajePorFallo=resultado_editar["MensajePorFallo"]
 		return self.obtenerResultado()

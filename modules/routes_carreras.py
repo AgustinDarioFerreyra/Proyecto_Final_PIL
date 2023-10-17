@@ -26,29 +26,6 @@ def obtener_carreras():
     return render_template('carreras/carreras.html', carreras=carreras, csrf=csrf, filtros=filtros)
 
 @carreras_bp.route('/carreras/crear', methods=['GET', 'POST'])
-
-@login_required
-def editar_persona():
-    carreras_id = request.args.get('carreras_id', type=int)
-
-    if request.method == 'POST':
-        formulario_data = request.form.to_dict()
-        resultado=gestor_carreras().editar(carreras_id, **formulario_data)
-        if resultado["Exito"]:
-            flash('Persona actualizada correctamente', 'success')
-            return redirect(url_for('routes_personas.obtener_lista_paginada'))
-        else:
-            flash(resultado["MensajePorFallo"], 'warning')
-
-    resultado=gestor_carreras().obtener(carreras_id)
-    if resultado["Exito"]:
-        persona=resultado["Resultado"]
-        return render_template('carreras/editar_carrera.html', carrera=carrera, csrf=csrf)
-    else:
-        flash(resultado["MensajePorFallo"], 'warning')
-        return redirect(url_for('routes_carreras.obtener_carreras'))
-
-
 @login_required
 def crear_carrera():
     formulario_data = {}
@@ -61,6 +38,28 @@ def crear_carrera():
         else:
             flash(resultado["MensajePorFallo"], 'warning')
     return render_template('carreras/crear_carrera.html', formulario_data=formulario_data, csrf=csrf)
+
+@carreras_bp.route('/carreras/editar', methods=['GET', 'POST'])
+@login_required
+def editar_carrera():
+    carreras_id = request.args.get('carrera_id', type=int)
+
+    if request.method == 'POST':
+        formulario_data = request.form.to_dict()
+        resultado=gestor_carreras().editar(carreras_id, **formulario_data)
+        if resultado["Exito"]:
+            flash('Carrera actualizada correctamente', 'success')
+            return redirect(url_for('routes_carreras.obtener_carreras'))
+        else:
+            flash(resultado["MensajePorFallo"], 'warning')
+
+    resultado=gestor_carreras().obtener(carreras_id)
+    if resultado["Exito"]:
+        carrera=resultado["Resultado"]
+        return render_template('carreras/editar_carrera.html', carrera=carrera, csrf=csrf)
+    else:
+        flash(resultado["MensajePorFallo"], 'warning')
+        return redirect(url_for('routes_carreras.obtener_carreras'))
 
 @carreras_bp.route('/carreras/<int:carrera_id>', methods=['POST'])
 @login_required

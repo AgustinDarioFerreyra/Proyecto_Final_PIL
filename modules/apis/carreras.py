@@ -131,7 +131,6 @@ class CarrerasResource(Resource):
 			return {"Exito":resultado["Exito"],"MensajePorFallo":resultado["MensajePorFallo"],"Resultado":None}, 201
 		else:
 			return {"Exito":resultado["Exito"],"MensajePorFallo":resultado["MensajePorFallo"],"Resultado":None}, 400
-		
 
 	@jwt_or_login_required()
 	def delete(self, recurso=None):
