@@ -149,6 +149,10 @@ input:focus, select:focus, select, input.form-control:focus {
     border-color: black
 }
 
+.table-responsive {
+    overflow-x: auto;
+}
+
 @media (max-width: 768px) {
     .loginn{
        justify-content:center;
