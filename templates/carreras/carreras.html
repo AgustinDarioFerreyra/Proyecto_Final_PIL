@@ -5,7 +5,7 @@
 
 <div class="fondo">
 <div class="container " style="width: 100%;">
-    <div class="container-chico list"style="width: 100%;" >
+    <div class="container-chico"style="width: 100%;" >
     <h2><b>Lista de Carreras</b></h2>
     <div class="row">
         <div class="mr-2">
@@ -22,29 +22,22 @@
         </div>
     </div>
     <form method="GET" action="{{ url_for('routes_carreras.obtener_carreras') }}" class="mb-3">
-        <div class="row">
-            <div class="col-12">
-                <div class="row d-flex filter">
-                    <div class="row d-flex filter">
-                    <div>
+        <div class="row edit">
+                    <div class="col mb-3">
                         <input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{ filtros.get('universidad', '') }}">
                     </div>
-                    <div>
+                    <div class="col mb-3">
                         <input type="text" class="form-control" id="facultad" name="facultad" placeholder="Facultad" value="{{ filtros.get('facultad', '') }}">
                     </div>
-                    <div>
+                    <div class="col mb-3">
                         <input type="text" class="form-control" id="campus" name="campus" placeholder="Campus" value="{{ filtros.get('campus', '') }}">
                     </div>
-                    <div>
+                    <div class="col mb-3">
                         <input type="text" class="form-control" id="programa" name="programa" placeholder="Programa" value="{{ filtros.get('programa', '') }}">
                     </div>
-                    </div>
-                    <div>
+                    <div class="filtro">
                         <button type="submit" class="btn btn-primary">Filtrar</button>
                     </div>
-                    
-                </div>
-            </div>
         </div>
     </form>
 

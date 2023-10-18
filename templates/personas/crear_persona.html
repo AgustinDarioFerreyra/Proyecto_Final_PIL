@@ -3,13 +3,13 @@
 {% import 'comun/lugares.html' as lugares %}
 
 {% block content %}
-<div class="fondo">
-<div class="container p-2">    
+<div class="fondo" >
+<div class="container">    
     <div class="container-chico">
     <h2>Crear Nueva Persona</h2>
     <form id="crear-persona-form" method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <div class="row">
+        <div class="row edit">
             <div class="col mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre"
@@ -26,7 +26,7 @@
                     value="{{ formulario_data.get('email', '') }}">
             </div>
         </div>
-        <div class="row">
+        <div class="row edit">
             <div class="col mb-3">
             <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
             <input type="text" class="form-control" id="birthdatePicker" name="birthdate"
@@ -41,7 +41,7 @@
                 {{ genero.campo_genero("" ) }}
             </div>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-3 edit">
             {{ lugares.campos_lugares("", "", "", "") }}
         </div>
         <div class="col mb-3 text-center">

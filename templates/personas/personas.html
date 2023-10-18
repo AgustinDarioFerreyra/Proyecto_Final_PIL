@@ -22,34 +22,27 @@
 			</div>
 		</div>
 		<form method="GET" action="{{ url_for('routes_personas.obtener_lista_paginada') }}" class="mb-3">
-			<div class="row">
-				<div class="col-12">
-					<div class="row d-flex filter ">
-						<div class="row d-flex filter" >
-							<div>
+			<div class="row edit">
+				<div class="col mb-3">
 							<input type="text" class="form-control" name="nombre" placeholder="Nombre"
 								value="{{ filtros.get('nombre', '') }}">
 						</div>
-						<div>
+						<div class="col mb-3">
 							<input type="text" class="form-control" name="apellido" placeholder="Apellido"
 								value="{{ filtros.get('apellido', '') }}">
 						</div>
-						<div>
+						<div class="col mb-3">
 							<input type="text" class="form-control" name="email" placeholder="Email"
 								value="{{ filtros.get('email', '') }}">
 						</div>
-						<div>
+						<div class="col mb-3">
 							<input type="text" class="form-control" name="personal_id" placeholder="DNI / Cedula"
 								value="{{ filtros.get('personal_id', '') }}">
 						</div>
-						</div>
-						
-						<div>							
-					        <button type="submit" class="btn btn-primary filtro">Filtrar</button>
-				        </div>
+						<div class="filtro">
+					        <button type="submit" class="btn btn-primary">Filtrar</button>
+						</div>	
 					</div>
-				</div>
-			</div>
 		</form>
 		<div class="table-responsive" style="width:100%;">
 		<table id="personas" class="display" style="width:100%;">

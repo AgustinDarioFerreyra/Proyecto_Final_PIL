@@ -3,11 +3,11 @@
 {% block content %}
 <div class="fondo">
     <div class="container p-2">
-        <div class="container-chico">
+        <div class="container-chico" style="width: 100%;">
         <h2>Editar Carrera</h2>
         <form id="editar-carrera-form" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <div class="row">
+            <div class="row edit">
                 <div class="col mb-3">
                     <label for="universidad" class="form-label">Universidad</label>
                     <input type="text" class="form-control" id="universidad" name="universidad" value="{{ carrera.universidad.nombre }}">
