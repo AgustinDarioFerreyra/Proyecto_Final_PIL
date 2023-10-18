@@ -103,10 +103,6 @@ footer {
     top: 5%;
 }
 
-#list{
-    width:100%;
-}
-
 .option{
     margin-left:50%
 }
@@ -153,6 +149,18 @@ input:focus, select:focus, select, input.form-control:focus {
     overflow-x: auto;
 }
 
+.filter{
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+}
+
+.dataTables_wrapper{
+    display:flex;
+    justify-content:center;
+    gap:30px
+}
+
 @media (max-width: 768px) {
     .loginn{
        justify-content:center;
@@ -176,5 +184,28 @@ input:focus, select:focus, select, input.form-control:focus {
     .home{
         align-items:center;
         justify-content:center
+    }
+}
+
+@media (max-width: 426px) {
+    .pagination{
+        align-items:center;
+        justify-content:center
+    }
+
+    .filter{
+        gap:3px;
+    }
+
+    .dataTables_wrapper{
+        gap:0px
+    }
+
+    .filtro{
+       gap:40px
+    }
+
+    .links{
+        color: black !important
     }
 }

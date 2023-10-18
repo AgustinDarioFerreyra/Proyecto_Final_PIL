@@ -4,8 +4,8 @@
 {% block content %}
 
 <div class="fondo">
-<div class="container ">
-    <div class="container-chico"style="width: 100%;" >
+<div class="container " style="width: 100%;">
+    <div class="container-chico list"style="width: 100%;" >
     <h2><b>Lista de Carreras</b></h2>
     <div class="row">
         <div class="mr-2">
@@ -23,30 +23,33 @@
     </div>
     <form method="GET" action="{{ url_for('routes_carreras.obtener_carreras') }}" class="mb-3">
         <div class="row">
-            <div class="col-10">
-                <div class="row">
-                    <div class="col-md-3">
+            <div class="col-12">
+                <div class="row d-flex filter">
+                    <div class="row d-flex filter">
+                    <div>
                         <input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{ filtros.get('universidad', '') }}">
                     </div>
-                    <div class="col-md-3">
+                    <div>
                         <input type="text" class="form-control" id="facultad" name="facultad" placeholder="Facultad" value="{{ filtros.get('facultad', '') }}">
                     </div>
-                    <div class="col-md-3">
+                    <div>
                         <input type="text" class="form-control" id="campus" name="campus" placeholder="Campus" value="{{ filtros.get('campus', '') }}">
                     </div>
-                    <div class="col-md-3">
+                    <div>
                         <input type="text" class="form-control" id="programa" name="programa" placeholder="Programa" value="{{ filtros.get('programa', '') }}">
                     </div>
-                    <div class="col-2">
+                    </div>
+                    <div>
                         <button type="submit" class="btn btn-primary">Filtrar</button>
                     </div>
+                    
                 </div>
             </div>
         </div>
     </form>
 
 
-    <div class="table-responsive">
+    <div class="table-responsive" style="width:100%;">
     <table id="carreras" class="display" style="width:100%;">
         <thead>
             <tr>
@@ -94,7 +97,9 @@
 			language: {
 				url: 'http://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
 			},
+            responsive: true
 		});
+		new $.fn.dataTable.FixedHeader( table );
 	});
 </script>
 {% endblock %}
