@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="fondo">
-<div class="container text-title" style="width: 100%;padding-bottom: 100px;">
+<div class="container ">
     <div class="container-chico"style="width: 100%;" >
     <h2><b>Lista de Carreras</b></h2>
     <div class="row">
@@ -37,16 +37,16 @@
                     <div class="col-md-3">
                         <input type="text" class="form-control" id="programa" name="programa" placeholder="Programa" value="{{ filtros.get('programa', '') }}">
                     </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </div>
                 </div>
-            </div>
-            <div class="col-2">
-                <button type="submit" class="btn btn-primary">Filtrar</button>
             </div>
         </div>
     </form>
 
 
-    <div id="list">
+    <div class="table-responsive">
     <table id="carreras" class="display" style="width:100%;">
         <thead>
             <tr>
@@ -94,8 +94,10 @@
 			language: {
 				url: 'http://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
 			},
+			responsive: true
 		});
 
+		new $.fn.dataTable.FixedHeader( table );
 	});
 </script>
 {% endblock %}
