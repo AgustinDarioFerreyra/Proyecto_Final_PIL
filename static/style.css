@@ -158,7 +158,15 @@ input:focus, select:focus, select, input.form-control:focus {
 .dataTables_wrapper{
     display:flex;
     justify-content:center;
-    gap:30px
+}
+
+.dataTables_wrapper{
+    display:flex;
+    justify-content:center;
+}
+
+.dataTables_wrapper > .row{
+    width:100%
 }
 
 @media (max-width: 768px) {
