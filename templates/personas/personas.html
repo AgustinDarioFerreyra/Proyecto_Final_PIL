@@ -23,32 +23,35 @@
 		</div>
 		<form method="GET" action="{{ url_for('routes_personas.obtener_lista_paginada') }}" class="mb-3">
 			<div class="row">
-				<div class="col-10">
-					<div class="row">
-						<div class="col-md-3">
+				<div class="col-12">
+					<div class="row d-flex filter ">
+						<div class="row d-flex filter" >
+							<div>
 							<input type="text" class="form-control" name="nombre" placeholder="Nombre"
 								value="{{ filtros.get('nombre', '') }}">
 						</div>
-						<div class="col-md-3">
+						<div>
 							<input type="text" class="form-control" name="apellido" placeholder="Apellido"
 								value="{{ filtros.get('apellido', '') }}">
 						</div>
-						<div class="col-md-3">
+						<div>
 							<input type="text" class="form-control" name="email" placeholder="Email"
 								value="{{ filtros.get('email', '') }}">
 						</div>
-						<div class="col-md-3">
+						<div>
 							<input type="text" class="form-control" name="personal_id" placeholder="DNI / Cedula"
 								value="{{ filtros.get('personal_id', '') }}">
 						</div>
-						<div class="col-2">
-					        <button type="submit" class="btn btn-primary">Filtrar</button>
+						</div>
+						
+						<div>							
+					        <button type="submit" class="btn btn-primary filtro">Filtrar</button>
 				        </div>
 					</div>
 				</div>
 			</div>
 		</form>
-		<div class="table-responsive">
+		<div class="table-responsive" style="width:100%;">
 		<table id="personas" class="display" style="width:100%;">
 			<thead>
 				<tr>
@@ -102,7 +105,9 @@
 			language: {
 				url: 'http://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
 			},
+			responsive: true
 		});
+		 new $.fn.dataTable.FixedHeader( table );
 	});
 </script>
 
