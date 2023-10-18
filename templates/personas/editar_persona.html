@@ -6,11 +6,11 @@
 {% block content %}
 <div class="fondo">
 <div class="container p-2">
-    <div class="container-chico" style="margin: 150px 0px 150px 0px;">
+    <div class="container-chico" style="width: 100%;">
     <h2>Editar Persona</h2>
     <form id="editar-persona-form" method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <div class="row">
+        <div class="row edit">
             <div class="col mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" value="{{ persona.nombre }}">
@@ -24,9 +24,9 @@
                 <input type="email" class="form-control" id="email" name="email" value="{{ persona.email }}">
             </div>
         </div>
-        <div class="row">
+        <div class="row edit">
             <div class="col mb-3">
-                <label for="birthdate" class="form-label">Fecha de Nacimiento (d-m-año)</label>
+                <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
                 <input type="text" class="form-control" id="birthdate" name="birthdate" value="{{ persona.birthdate.strftime('%d-%m-%Y') }}">
             </div>
             <div class="col mb-3">
@@ -38,7 +38,7 @@
                 {{ genero.campo_genero(persona.genero.nombre) }}
             </div>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-3 edit">
             {{ lugares.campos_lugares(persona.lugar.pais.nombre, persona.lugar.provincia.nombre,
             persona.lugar.ciudad.nombre, persona.lugar.barrio.nombre) }}
         </div>
@@ -51,7 +51,7 @@
     <div id="carreras-list">
         <h3>Carreras Asociadas</h3>
         <button class="btn btn-primary" data-toggle="modal" data-target="#agregarModal{{ persona.id }}">Nueva asignación</button>
-        <table id="carreras" class="display nowrap" style="width:100%">
+        <table id="carreras" class="display " style="width:100%">
             <thead>
                 <tr>
                     <th>Universidad</th>
@@ -79,8 +79,11 @@
 <script>
         var id_persona = {{ persona.id }};
         var dataTable = $('#carreras').DataTable({
-            language: { url: 'http://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' }
-        });
+            language: { 
+                url: 'http://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' 
+            },
+            responsive: true
+		    });
             // Función para cargar los datos desde la API
             function cargarDatos(id) {
             $.ajax({

@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center
 }
 
 .container-chico{
@@ -42,7 +42,7 @@
 }
 
 .fondo-home{
- background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5));
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5));
     align-items:center;
     text-align:center;
     border-radius: 8px;
@@ -60,7 +60,7 @@
 }
 
 .navbar {
-  background-color: transparent !important;
+  background-color: #ADAFB2;
 }
 
 .foot {
@@ -149,11 +149,6 @@ input:focus, select:focus, select, input.form-control:focus {
     overflow-x: auto;
 }
 
-.filter{
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-}
 
 .dataTables_wrapper{
     display:flex;
@@ -210,10 +205,27 @@ input:focus, select:focus, select, input.form-control:focus {
     }
 
     .filtro{
-       gap:40px
+        display:flex;
+      align-items:center;
+      justify-content:center
     }
 
     .links{
         color: black !important
+    }
+
+    .edit{
+        display:flex;
+        flex-direction:column
+    }
+
+    .previous a, .next a{
+        display:none
+    }
+
+    .paginate_button{
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-left: 0px;
     }
 }
